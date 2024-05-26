@@ -37,8 +37,8 @@ gmm = GaussianMixture(n_components=3, random_state=42)
 gmm.fit(df.drop('target', axis=1))  # 选择特征列进行GMM拟合
 
 # 获取每个样本的聚类标签
-labels = gmm.predict(df.iloc[:, :-1])  # 只选择特征列进行预测
-
+# labels = gmm.predict(df.iloc[:, :-1])  # 只选择特征列进行预测
+labels = gmm.predict(df.drop('target', axis=1))  # 选择特征列进行预测
 # 绘制聚类结果
 plt.scatter(X_pca[:, 0], X_pca[:, 1], c=labels, cmap='viridis')
 plt.xlabel('Principal Component 1')
