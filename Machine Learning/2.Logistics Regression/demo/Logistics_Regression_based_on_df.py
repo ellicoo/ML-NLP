@@ -12,7 +12,9 @@ import zipfile
 with zipfile.ZipFile('KaggleCredit2.csv.zip', 'r') as z:  ##读取zip里的文件
     f = z.open('KaggleCredit2.csv')
     data = pd.read_csv(f, index_col=0)  # 使用pandas读取csv文件，将第一列作为索引
-data.head()  # 显示头部5行数据
+# data.head()  # 显示头部5行数据
+
+print(type(data))
 print(f"数据源的行列元祖：{data.shape}")  # (112915, 11) 返回一个元祖，第一个位置值为行数，第二个位置值为了列数
 print(f"该元祖类型：{type(data.shape)}")
 
@@ -63,7 +65,7 @@ data.dropna(inplace=True)  ##去掉为空的数据
 
 print(f"空值处理后的数据集合的行列元祖：{data.shape}")
 
-# SeriousDlqin2yrs: Person experienced 90 days past due delinquency or worse
+# SeriousDlqin2yrs: Person experienced 90 days past due delinquency or worse 进行二分类，因为这个结果是0/1
 # y 是目标变量，包含 SeriousDlqin2yrs 列中的所有值。
 # X 是特征变量，包含 data DataFrame 中除 SeriousDlqin2yrs 列外的所有列。
 Y = data['SeriousDlqin2yrs']
@@ -134,6 +136,8 @@ average='macro'通常用于处理多类别分类问题中各类别样本数量�
 那么计算得到的平均精确率为 (0.8 + 0.7 + 0.6) / 3 = 0.7
 但准确率没有这个参数
 """
+
+# 第一个参数为真实值，第二个参数为预测值
 accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred, average='macro')
 recall = recall_score(y_test, y_pred, average='macro')
