@@ -9,6 +9,14 @@ X = iris.data
 y = iris.target
 
 # 将数据集拆分为训练集和测试集
+# random_state参数用于设置随机数种子，它控制了数据集的随机划分方式
+
+"""
+当 random_state 参数设置为一个固定的整数值时，每次运行代码时，
+train_test_split 函数将以相同的方式随机划分数据集，这样就能够得到相同的训练集和测试集，保证了结果的可复现性。
+如果不设置 random_state 参数，每次运行代码时，train_test_split 函数都会使用不同的随机数种子，从而得到不同的数据划分结果
+
+"""
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 """
@@ -21,6 +29,8 @@ lr.fit(X_train, y_train)
 
 # 在测试集上进行预测
 y_pred = lr.predict(X_test)
+
+print(y_pred)
 
 # 计算准确率、精确率、召回率和 F1 分数
 """
